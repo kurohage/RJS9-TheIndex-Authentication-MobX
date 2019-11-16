@@ -3,6 +3,9 @@ import React, { Component } from "react";
 import BookForm from "./forms/BookForm";
 import Modal from "react-responsive-modal";
 
+// Stores
+import authStore from "./stores/authStore";
+
 class AddBookModal extends Component {
   state = {
     open: false
@@ -13,6 +16,9 @@ class AddBookModal extends Component {
   onCloseModal = () => this.setState({ open: false });
 
   render() {
+    if (!authStore.user) {
+      return <></>;
+    }
     const { open } = this.state;
     return (
       <div>

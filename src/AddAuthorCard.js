@@ -3,6 +3,9 @@ import Modal from "react-responsive-modal";
 
 import AuthorForm from "./forms/AuthorForm";
 
+// Stores
+import authStore from "./stores/authStore";
+
 class AddAuthorCard extends Component {
   state = {
     open: false
@@ -13,7 +16,12 @@ class AddAuthorCard extends Component {
   onCloseModal = () => this.setState({ open: false });
 
   render() {
+    if (!authStore.user) {
+      return <></>;
+    }
+
     const { open } = this.state;
+
     return (
       <div className="col-lg-4 col-md-6 col-12">
         <div>
